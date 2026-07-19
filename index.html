@@ -3,124 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Reels Thumbnail Generator</title>
+    <title>NPA SMART SYSTEM VVIP 3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Impact:wght@400;700&family=Arial:wght@700&display=swap');
-        .thumbnail { position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3); }
-        .overlay-text {
-            position: absolute; text-shadow: 3px 3px 8px rgba(0,0,0,0.95);
-            font-family: 'Impact', sans-serif; font-weight: 900;
-            letter-spacing: -1px; text-transform: uppercase;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Impact:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+        
+        body { font-family: 'Poppins', sans-serif; }
+        .gold { color: #F4B400; }
+        .cream { background-color: #FFF8F0; }
+        .dark-bg { background-color: #2D2D2D; }
     </style>
 </head>
-<body class="bg-gray-950 text-white min-h-screen">
-    <div class="max-w-5xl mx-auto p-6">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold flex items-center justify-center gap-3">
-                🎥 AI REELS GENERATOR
-            </h1>
-            <p class="text-gray-400">Buat thumbnail Reels viral seperti Nur Muthmainnah</p>
+<body class="bg-[#2D2D2D] text-white min-h-screen">
+
+<div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-center p-6 border-b border-[#F4B400]/30">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-[#F4B400] to-[#D62828] rounded-2xl flex items-center justify-center text-3xl">🎥</div>
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight">NPA SMART SYSTEM</h1>
+                <p class="text-[#F4B400] text-sm -mt-1">VVIP 3.0 • AI CONTENT CREATOR SUITE</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-6 text-sm">
+            <div class="px-5 py-2 bg-[#FFF8F0] text-[#2D2D2D] rounded-2xl font-semibold">Online</div>
+        </div>
+    </div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-72 bg-[#1F1F1F] min-h-screen p-6 border-r border-[#F4B400]/20">
+            <h2 class="text-[#F4B400] font-semibold mb-4 text-lg">KELOMPOK PROSPEK</h2>
+            <div class="space-y-2">
+                <div class="px-4 py-3 bg-[#2D2D2D] hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">👩 Emak</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">💼 Karyawan</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🏛️ PNS</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🛒 Pedagang</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">💰 Pengusaha</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🎓 Mahasiswa</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🌍 TKW</div>
+                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🏫 Biaya Sekolah</div>
+            </div>
         </div>
 
-        <div class="bg-gray-900 rounded-3xl p-8">
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <h2 class="text-4xl font-bold mb-8">AI Content Creator</h2>
+
             <!-- Upload -->
-            <div class="mb-8">
-                <label class="block text-lg font-semibold mb-3">📸 Upload Foto / Produk</label>
-                <div id="drop-zone" 
-                     class="border-2 border-dashed border-yellow-400 rounded-2xl h-80 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-800 transition-all">
-                    <i class="fas fa-cloud-upload-alt text-6xl text-gray-400 mb-4"></i>
-                    <p class="text-xl text-gray-300">Klik atau tarik gambar ke sini</p>
-                    <p class="text-sm text-gray-500 mt-2">PNG, JPG, WEBP (max 5MB)</p>
-                    <input type="file" id="file-input" class="hidden" accept="image/*">
-                </div>
-                <div id="image-preview" class="hidden mt-4">
-                    <img id="preview-img" class="w-full max-h-96 object-contain rounded-2xl border border-gray-700">
+            <div class="cream rounded-3xl p-8 text-[#2D2D2D] mb-8">
+                <h3 class="text-2xl font-semibold mb-6">📸 Upload Foto / Produk</h3>
+                <div id="drop-zone" class="border-4 border-dashed border-[#F4B400] rounded-3xl h-80 flex flex-col items-center justify-center cursor-pointer hover:bg-white/70 transition">
+                    <i class="fas fa-cloud-upload-alt text-7xl text-[#D62828] mb-4"></i>
+                    <p class="text-xl font-medium">Klik atau tarik gambar ke sini</p>
                 </div>
             </div>
 
-            <button onclick="generateThumbnails()" 
-                    class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-2xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-xl">
-                <i class="fas fa-magic"></i> GENERATE THUMBNAILS
-            </button>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Hook Generator -->
+                <div class="bg-[#1F1F1F] rounded-3xl p-8">
+                    <h3 class="text-[#F4B400] text-xl font-semibold mb-6">🎯 AI Hook Generator</h3>
+                    <button onclick="generateAll()" 
+                            class="w-full py-6 bg-gradient-to-r from-[#F4B400] to-[#D62828] text-white font-bold text-xl rounded-2xl hover:scale-105 transition">
+                        ✨ GENERATE ALL (Hook + Thumbnail + Prompt)
+                    </button>
+                </div>
+
+                <!-- Thumbnail -->
+                <div class="bg-[#1F1F1F] rounded-3xl p-8">
+                    <h3 class="text-[#F4B400] text-xl font-semibold mb-6">🖼 AI Thumbnail</h3>
+                    <div class="aspect-[9/16] bg-black rounded-2xl overflow-hidden border border-[#F4B400]/50" id="thumbnail-preview">
+                        <!-- Thumbnail akan muncul di sini -->
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Results -->
-        <div id="results" class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
     </div>
+</div>
 
-    <script>
-        let uploadedImageUrl = null;
+<script>
+    function generateAll() {
+        alert("🚀 NPA SMART SYSTEM VVIP 3.0\n\nSemua konten sedang digenerate...\n\n(Hook, Thumbnail, Caption, Prompt Image, Prompt Video)");
+        // Di sini nanti bisa diintegrasikan dengan Grok Imagine
+    }
 
-        const dropZone = document.getElementById('drop-zone');
-        const fileInput = document.getElementById('file-input');
-
-        dropZone.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', (e) => {
-            handleFile(e.target.files[0]);
-        });
-
-        // Drag & Drop
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = '#eab308';
-            dropZone.style.backgroundColor = '#1f2937';
-        });
-
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.style.borderColor = '#ca8a04';
-            dropZone.style.backgroundColor = '';
-        });
-
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = '#ca8a04';
-            dropZone.style.backgroundColor = '';
-            handleFile(e.dataTransfer.files[0]);
-        });
-
-        function handleFile(file) {
-            if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                alert("File harus berupa gambar!");
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = function(ev) {
-                uploadedImageUrl = ev.target.result;
-                document.getElementById('preview-img').src = uploadedImageUrl;
-                document.getElementById('image-preview').classList.remove('hidden');
-                dropZone.classList.add('hidden');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function generateThumbnails() {
-            if (!uploadedImageUrl) {
-                alert("Upload foto dulu ya!");
-                return;
-            }
-
-            const results = document.getElementById('results');
-            results.innerHTML = '';
-
-            for (let i = 0; i < 4; i++) {
-                const div = document.createElement('div');
-                div.className = "thumbnail aspect-[9/16] bg-black";
-                div.innerHTML = `
-                    <img src="${uploadedImageUrl}" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
-                    <div class="overlay-text text-yellow-400 text-3xl top-8 left-4">EMAK</div>
-                    <div class="overlay-text text-white text-5xl top-1/3 left-4">GANTI BACKGROUND</div>
-                    <div class="overlay-text text-emerald-400 text-2xl bottom-12 left-4">MUDAH BANGET!</div>
-                    <div class="absolute bottom-4 right-4 text-6xl opacity-80">▶</div>
-                `;
-                results.appendChild(div);
-            }
-        }
-    </script>
+    // Drag & Drop sederhana
+    const dropZone = document.getElementById('drop-zone');
+    dropZone.addEventListener('click', () => alert('Fitur upload aktif (demo)'));
+</script>
 </body>
 </html>
