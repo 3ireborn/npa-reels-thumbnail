@@ -7,76 +7,80 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Impact:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .gold { color: #F4B400; }
-        .cream { background-color: #FFF8F0; }
-        .dark-bg { background-color: #2D2D2D; }
     </style>
 </head>
 <body class="bg-[#2D2D2D] text-white min-h-screen">
 
-<div class="max-w-7xl mx-auto">
+<div class="max-w-6xl mx-auto p-6">
     <!-- Header -->
-    <div class="flex justify-between items-center p-6 border-b border-[#F4B400]/30">
+    <div class="flex items-center justify-between mb-8">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-[#F4B400] to-[#D62828] rounded-2xl flex items-center justify-center text-3xl">🎥</div>
+            <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center text-4xl shadow-lg">🎥</div>
             <div>
-                <h1 class="text-3xl font-bold tracking-tight">NPA SMART SYSTEM</h1>
-                <p class="text-[#F4B400] text-sm -mt-1">VVIP 3.0 • AI CONTENT CREATOR SUITE</p>
+                <h1 class="text-3xl font-bold">NPA SMART SYSTEM</h1>
+                <p class="text-[#F4B400] text-sm">VVIP 3.0 • AI CONTENT CREATOR SUITE</p>
             </div>
         </div>
-        <div class="flex items-center gap-6 text-sm">
-            <div class="px-5 py-2 bg-[#FFF8F0] text-[#2D2D2D] rounded-2xl font-semibold">Online</div>
-        </div>
+        <div class="bg-green-500/20 text-green-400 px-6 py-2 rounded-full text-sm font-medium">Online</div>
     </div>
 
-    <div class="flex">
-        <!-- Sidebar -->
-        <div class="w-72 bg-[#1F1F1F] min-h-screen p-6 border-r border-[#F4B400]/20">
-            <h2 class="text-[#F4B400] font-semibold mb-4 text-lg">KELOMPOK PROSPEK</h2>
+    <div class="grid grid-cols-12 gap-6">
+        <!-- Sidebar Kelompok Prospek -->
+        <div class="col-span-3 bg-[#1F1F1F] rounded-3xl p-6 h-fit">
+            <h2 class="text-[#F4B400] font-semibold text-lg mb-5">KELOMPOK PROSPEK</h2>
             <div class="space-y-2">
-                <div class="px-4 py-3 bg-[#2D2D2D] hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">👩 Emak</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">💼 Karyawan</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🏛️ PNS</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🛒 Pedagang</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">💰 Pengusaha</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🎓 Mahasiswa</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🌍 TKW</div>
-                <div class="px-4 py-3 hover:bg-[#F4B400] hover:text-black rounded-2xl cursor-pointer">🏫 Biaya Sekolah</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 bg-[#F4B400] text-black rounded-2xl cursor-pointer">👩 Emak</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 hover:bg-white/10 rounded-2xl cursor-pointer">💼 Karyawan</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 hover:bg-white/10 rounded-2xl cursor-pointer">🏛️ PNS</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 hover:bg-white/10 rounded-2xl cursor-pointer">🛒 Pedagang</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 hover:bg-white/10 rounded-2xl cursor-pointer">💰 Pengusaha</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 hover:bg-white/10 rounded-2xl cursor-pointer">🎓 Mahasiswa</div>
+                <div onclick="selectPersona(this)" class="persona-item flex items-center gap-3 px-4 py-4 hover:bg-white/10 rounded-2xl cursor-pointer">🌍 TKW</div>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 p-8">
-            <h2 class="text-4xl font-bold mb-8">AI Content Creator</h2>
+        <!-- Main Area -->
+        <div class="col-span-9">
+            <h2 class="text-4xl font-bold mb-2">AI Content Creator</h2>
+            <p class="text-gray-400 mb-8">Upload foto referensi → Pilih persona & style → AI kerjain semuanya</p>
 
             <!-- Upload -->
-            <div class="cream rounded-3xl p-8 text-[#2D2D2D] mb-8">
-                <h3 class="text-2xl font-semibold mb-6">📸 Upload Foto / Produk</h3>
-                <div id="drop-zone" class="border-4 border-dashed border-[#F4B400] rounded-3xl h-80 flex flex-col items-center justify-center cursor-pointer hover:bg-white/70 transition">
-                    <i class="fas fa-cloud-upload-alt text-7xl text-[#D62828] mb-4"></i>
-                    <p class="text-xl font-medium">Klik atau tarik gambar ke sini</p>
-                </div>
+            <div class="bg-white rounded-3xl p-10 text-center text-[#2D2D2D] mb-8" id="upload-area">
+                <i class="fas fa-cloud-upload-alt text-6xl text-red-600 mb-4"></i>
+                <p class="text-2xl font-semibold mb-2">Upload Foto / Produk</p>
+                <p class="text-gray-600">Klik atau tarik gambar ke sini</p>
+                <input type="file" id="file-upload" class="hidden" accept="image/*">
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Hook Generator -->
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Style & Ekspresi -->
                 <div class="bg-[#1F1F1F] rounded-3xl p-8">
-                    <h3 class="text-[#F4B400] text-xl font-semibold mb-6">🎯 AI Hook Generator</h3>
-                    <button onclick="generateAll()" 
-                            class="w-full py-6 bg-gradient-to-r from-[#F4B400] to-[#D62828] text-white font-bold text-xl rounded-2xl hover:scale-105 transition">
-                        ✨ GENERATE ALL (Hook + Thumbnail + Prompt)
-                    </button>
+                    <h3 class="text-[#F4B400] mb-4">Style / Gaya</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="style-tag">FOMO</div>
+                        <div class="style-tag">SHOCK</div>
+                        <div class="style-tag">SEMANGAT</div>
+                        <div class="style-tag">CURIOSITY</div>
+                    </div>
+
+                    <h3 class="text-[#F4B400] mt-8 mb-4">Ekspresi Wajah</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="style-tag">Sedih</div>
+                        <div class="style-tag">Kaget</div>
+                        <div class="style-tag">Takut</div>
+                        <div class="style-tag">Harapan</div>
+                    </div>
                 </div>
 
-                <!-- Thumbnail -->
-                <div class="bg-[#1F1F1F] rounded-3xl p-8">
-                    <h3 class="text-[#F4B400] text-xl font-semibold mb-6">🖼 AI Thumbnail</h3>
-                    <div class="aspect-[9/16] bg-black rounded-2xl overflow-hidden border border-[#F4B400]/50" id="thumbnail-preview">
-                        <!-- Thumbnail akan muncul di sini -->
-                    </div>
+                <!-- Generate -->
+                <div class="bg-[#1F1F1F] rounded-3xl p-8 flex flex-col justify-center items-center">
+                    <button onclick="generateContent()" 
+                            class="w-full py-8 bg-gradient-to-r from-[#F4B400] to-[#D62828] rounded-3xl text-black font-bold text-2xl hover:scale-105 transition">
+                        ✨ GENERATE SEMUA
+                    </button>
+                    <p class="text-xs text-gray-500 mt-4">Hook + Thumbnail + Prompt Gambar + Caption</p>
                 </div>
             </div>
         </div>
@@ -84,14 +88,21 @@
 </div>
 
 <script>
-    function generateAll() {
-        alert("🚀 NPA SMART SYSTEM VVIP 3.0\n\nSemua konten sedang digenerate...\n\n(Hook, Thumbnail, Caption, Prompt Image, Prompt Video)");
-        // Di sini nanti bisa diintegrasikan dengan Grok Imagine
+    function selectPersona(el) {
+        document.querySelectorAll('.persona-item').forEach(item => {
+            item.classList.remove('bg-[#F4B400]', 'text-black');
+        });
+        el.classList.add('bg-[#F4B400]', 'text-black');
     }
 
-    // Drag & Drop sederhana
-    const dropZone = document.getElementById('drop-zone');
-    dropZone.addEventListener('click', () => alert('Fitur upload aktif (demo)'));
+    // Upload handling
+    document.getElementById('upload-area').addEventListener('click', () => {
+        document.getElementById('file-upload').click();
+    });
+
+    function generateContent() {
+        alert("✅ AI sedang bekerja...\n\nHook, Thumbnail, dan Prompt gambar sedang digenerate sesuai persona & style yang dipilih.");
+    }
 </script>
 </body>
 </html>
