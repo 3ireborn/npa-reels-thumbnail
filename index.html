@@ -7,111 +7,106 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Impact:wght@700&family=Poppins:wght@400;500;600&display=swap');
         body { font-family: 'Poppins', sans-serif; }
+        .overlay-text { font-family: 'Impact', sans-serif; text-shadow: 3px 3px 8px rgba(0,0,0,0.9); }
     </style>
 </head>
 <body class="bg-[#2D2D2D] text-white min-h-screen">
 
-<div class="max-w-6xl mx-auto p-6">
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-8">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center text-3xl">🎥</div>
-            <div>
-                <h1 class="text-2xl font-bold">NPA SMART SYSTEM</h1>
-                <p class="text-[#F4B400] text-sm">VVIP 3.0 • AI CONTENT CREATOR</p>
-            </div>
-        </div>
-        <div class="px-5 py-2 bg-green-500/20 text-green-400 rounded-full text-sm font-medium">Online</div>
+<div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-center text-3xl font-bold mb-2">NPA SMART SYSTEM</h1>
+    <p class="text-center text-[#F4B400] mb-10">AI Content Creator Suite</p>
+
+    <!-- Upload -->
+    <div id="upload-area" class="bg-white rounded-3xl p-10 text-center cursor-pointer mb-8">
+        <i class="fas fa-cloud-upload-alt text-6xl text-red-600 mb-4"></i>
+        <h3 class="text-2xl font-semibold text-black">Upload Foto Referensi</h3>
+        <input type="file" id="file-input" class="hidden" accept="image/*">
     </div>
 
-    <div class="max-w-2xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-2">AI Content Creator</h2>
-        <p class="text-gray-400 text-center mb-10">Upload foto → Pilih persona & style → AI kerjain semuanya</p>
+    <div id="preview-area" class="hidden mb-8">
+        <div class="relative mx-auto max-w-sm" id="thumbnail-container">
+            <img id="preview-img" class="w-full rounded-3xl">
+            <!-- Text Overlay Preview -->
+            <div id="text-overlay" class="absolute inset-0 flex flex-col justify-between p-6 text-center"></div>
+        </div>
+    </div>
 
-        <!-- Dropdown Persona -->
-        <div class="mb-8">
-            <label class="block text-[#F4B400] font-medium mb-3">KELOMPOK PROSPEK</label>
-            <select id="persona-select" class="w-full bg-[#1F1F1F] border border-gray-600 rounded-2xl px-6 py-5 text-lg focus:outline-none focus:border-[#F4B400]">
-                <option value="Emak">👩 Emak</option>
-                <option value="Karyawan">💼 Karyawan</option>
-                <option value="PNS">🏛️ PNS</option>
-                <option value="Pedagang">🛒 Pedagang</option>
-                <option value="Pengusaha">💰 Pengusaha</option>
-                <option value="Mahasiswa">🎓 Mahasiswa</option>
-                <option value="TKW">🌍 TKW</option>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Persona -->
+        <div>
+            <label class="block text-[#F4B400] mb-3 font-medium">Objek / Persona</label>
+            <select id="persona" class="w-full bg-[#1F1F1F] rounded-2xl px-6 py-5">
+                <option value="Emak">Emak</option>
+                <option value="Karyawan">Karyawan</option>
+                <option value="PNS">PNS</option>
+                <option value="Pedagang">Pedagang</option>
+                <option value="Pengusaha">Pengusaha</option>
+                <option value="Mahasiswa">Mahasiswa</option>
+                <option value="TKW">TKW</option>
             </select>
         </div>
 
-        <!-- Upload -->
-        <div id="upload-area" class="bg-white rounded-3xl p-12 text-center text-[#2D2D2D] cursor-pointer mb-10">
-            <div class="mx-auto w-28 h-28 bg-red-100 rounded-3xl flex items-center justify-center mb-6">
-                <i class="fas fa-cloud-upload-alt text-7xl text-red-600"></i>
-            </div>
-            <h3 class="text-2xl font-semibold mb-3">Upload Foto Referensi</h3>
-            <p class="text-gray-600">Klik atau tarik gambar ke sini</p>
-            <input type="file" id="file-input" class="hidden" accept="image/*">
+        <!-- Style -->
+        <div>
+            <label class="block text-[#F4B400] mb-3 font-medium">Style / Gaya</label>
+            <select id="style" class="w-full bg-[#1F1F1F] rounded-2xl px-6 py-5">
+                <option value="FOMO">FOMO</option>
+                <option value="SHOCK">SHOCK</option>
+                <option value="SEMANGAT">SEMANGAT</option>
+                <option value="CURIOSITY">CURIOSITY</option>
+            </select>
         </div>
-
-        <div id="preview-area" class="hidden mb-10">
-            <img id="preview-img" class="rounded-3xl mx-auto border-4 border-[#F4B400] max-h-96">
-        </div>
-
-        <!-- Style & Ekspresi -->
-        <div class="grid grid-cols-2 gap-6">
-            <div>
-                <label class="block text-[#F4B400] font-medium mb-3">Style / Gaya</label>
-                <div class="flex flex-wrap gap-3">
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">FOMO</div>
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">SHOCK</div>
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">SEMANGAT</div>
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">CURIOSITY</div>
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-[#F4B400] font-medium mb-3">Ekspresi Wajah</label>
-                <div class="flex flex-wrap gap-3">
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">Sedih</div>
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">Kaget</div>
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">Takut</div>
-                    <div class="px-5 py-3 bg-[#1F1F1F] rounded-2xl text-sm cursor-pointer hover:bg-[#F4B400] hover:text-black">Harapan</div>
-                </div>
-            </div>
-        </div>
-
-        <button onclick="generateContent()" 
-                class="mt-12 w-full py-7 bg-gradient-to-r from-[#F4B400] via-orange-500 to-red-600 rounded-3xl text-black font-bold text-2xl flex items-center justify-center gap-3 shadow-xl">
-            ✨ GENERATE SEMUA
-        </button>
     </div>
+
+    <button onclick="generateAll()" 
+            class="mt-12 w-full py-8 bg-gradient-to-r from-yellow-400 to-red-600 rounded-3xl text-black font-bold text-2xl flex items-center justify-center gap-3">
+        ✨ GENERATE SEMUA
+    </button>
 </div>
 
 <script>
-    const uploadArea = document.getElementById('upload-area');
-    const fileInput = document.getElementById('file-input');
-    const previewArea = document.getElementById('preview-area');
-    const previewImg = document.getElementById('preview-img');
+    let uploadedImage = null;
 
-    uploadArea.addEventListener('click', () => fileInput.click());
+    document.getElementById('upload-area').addEventListener('click', () => {
+        document.getElementById('file-input').click();
+    });
 
-    fileInput.addEventListener('change', (e) => {
+    document.getElementById('file-input').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = (ev) => {
-                previewImg.src = ev.target.result;
-                previewArea.classList.remove('hidden');
-                uploadArea.classList.add('hidden');
+            reader.onload = function(ev) {
+                uploadedImage = ev.target.result;
+                document.getElementById('preview-img').src = uploadedImage;
+                document.getElementById('preview-area').classList.remove('hidden');
+                document.getElementById('upload-area').classList.add('hidden');
             };
             reader.readAsDataURL(file);
         }
     });
 
-    function generateContent() {
-        const persona = document.getElementById('persona-select').value;
-        alert(`✅ Sedang memproses untuk ${persona}...\n\nAI sedang membuat Hook, Thumbnail, Prompt Gambar, dan Caption.`);
+    function generateAll() {
+        if (!uploadedImage) {
+            alert("Upload foto dulu ya beb!");
+            return;
+        }
+
+        const persona = document.getElementById('persona').value;
+        const style = document.getElementById('style').value;
+
+        // Mock Overlay Text
+        const overlayHTML = `
+            <div class="overlay-text text-yellow-400 text-4xl font-black">FOMO BANGET!</div>
+            <div class="overlay-text text-white text-5xl font-black mt-8">GAJI NAIK TAPI</div>
+            <div class="overlay-text text-red-400 text-4xl font-black">TABUNGAN TIPIS?</div>
+            <div class="overlay-text text-white text-3xl mt-auto">SOLUSI ADA DI SINI</div>
+        `;
+
+        document.getElementById('text-overlay').innerHTML = overlayHTML;
+
+        alert(`✅ Berhasil Generate untuk ${persona} dengan style ${style}!\n\n• Hook + Thumbnail sudah dibuat\n• Prompt gambar siap pakai\n• Caption & Video Prompt disesuaikan`);
     }
 </script>
 </body>
