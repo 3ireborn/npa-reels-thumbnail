@@ -8,79 +8,119 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Impact:wght@400;700&family=Arial:wght@700&display=swap');
-        
-        .thumbnail {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
-        }
-        
+        .thumbnail { position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3); }
         .overlay-text {
-            position: absolute;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.9),
-                        -3px -3px 6px rgba(0,0,0,0.9),
-                        3px -3px 6px rgba(0,0,0,0.9),
-                        -3px 3px 6px rgba(0,0,0,0.9);
-            font-family: 'Impact', sans-serif;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-        
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            position: absolute; text-shadow: 3px 3px 8px rgba(0,0,0,0.95);
+            font-family: 'Impact', sans-serif; font-weight: 900;
+            letter-spacing: -1px; text-transform: uppercase;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
-    <div class="max-w-7xl mx-auto p-6">
-        <header class="flex justify-between items-center mb-8 border-b border-gray-700 pb-6">
-            <div>
-                <h1 class="text-4xl font-bold flex items-center gap-3">
-                    <span class="text-yellow-400">🎥</span> AI REELS GENERATOR
-                </h1>
-                <p class="text-gray-400">Buat thumbnail Reels viral seperti Nur Muthmainnah</p>
-            </div>
-        </header>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-4 space-y-8">
-                <!-- Upload Section -->
-                <div class="bg-gray-800 rounded-2xl p-6">
-                    <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
-                        <i class="fas fa-image"></i> Upload Foto / Produk
-                    </h3>
-                    <div id="upload-area" class="border-2 border-dashed border-gray-600 rounded-xl h-64 flex flex-col items-center justify-center cursor-pointer hover:border-yellow-400 transition-colors">
-                        <i class="fas fa-cloud-upload-alt text-5xl text-gray-500 mb-4"></i>
-                        <p class="text-gray-400">Klik atau tarik gambar ke sini</p>
-                        <input type="file" id="image-upload" class="hidden" accept="image/*">
-                    </div>
-                    <div id="preview-upload" class="hidden mt-4">
-                        <img id="uploaded-img" class="w-full rounded-xl max-h-64 object-cover">
-                    </div>
-                </div>
-
-                <!-- Tema, Emosi, Teks, Ratio, Button -->
-                <!-- (kode lengkap sama seperti sebelumnya - silakan pakai versi lama untuk bagian ini) -->
-
-                <button onclick="generateThumbnails()" class="w-full bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-bold text-xl py-6 rounded-3xl flex items-center justify-center gap-3">
-                    <i class="fas fa-magic"></i> GENERATE THUMBNAILS
-                </button>
-            </div>
-
-            <div class="lg:col-span-8">
-                <div id="results" class="preview-grid"></div>
-            </div>
+<body class="bg-gray-950 text-white min-h-screen">
+    <div class="max-w-5xl mx-auto p-6">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold flex items-center justify-center gap-3">
+                🎥 AI REELS GENERATOR
+            </h1>
+            <p class="text-gray-400">Buat thumbnail Reels viral seperti Nur Muthmainnah</p>
         </div>
+
+        <div class="bg-gray-900 rounded-3xl p-8">
+            <!-- Upload -->
+            <div class="mb-8">
+                <label class="block text-lg font-semibold mb-3">📸 Upload Foto / Produk</label>
+                <div id="drop-zone" 
+                     class="border-2 border-dashed border-yellow-400 rounded-2xl h-80 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-800 transition-all">
+                    <i class="fas fa-cloud-upload-alt text-6xl text-gray-400 mb-4"></i>
+                    <p class="text-xl text-gray-300">Klik atau tarik gambar ke sini</p>
+                    <p class="text-sm text-gray-500 mt-2">PNG, JPG, WEBP (max 5MB)</p>
+                    <input type="file" id="file-input" class="hidden" accept="image/*">
+                </div>
+                <div id="image-preview" class="hidden mt-4">
+                    <img id="preview-img" class="w-full max-h-96 object-contain rounded-2xl border border-gray-700">
+                </div>
+            </div>
+
+            <button onclick="generateThumbnails()" 
+                    class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-2xl py-6 rounded-3xl flex items-center justify-center gap-3 shadow-xl">
+                <i class="fas fa-magic"></i> GENERATE THUMBNAILS
+            </button>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
     </div>
 
     <script>
-        // Script lengkap (dari versi sebelumnya)
-        // ... (saya sarankan copy seluruh script dari respons sebelumnya)
+        let uploadedImageUrl = null;
+
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+
+        // Drag & Drop
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#eab308';
+            dropZone.style.backgroundColor = '#1f2937';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = '#ca8a04';
+            dropZone.style.backgroundColor = '';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#ca8a04';
+            dropZone.style.backgroundColor = '';
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert("File harus berupa gambar!");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                uploadedImageUrl = ev.target.result;
+                document.getElementById('preview-img').src = uploadedImageUrl;
+                document.getElementById('image-preview').classList.remove('hidden');
+                dropZone.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function generateThumbnails() {
+            if (!uploadedImageUrl) {
+                alert("Upload foto dulu ya!");
+                return;
+            }
+
+            const results = document.getElementById('results');
+            results.innerHTML = '';
+
+            for (let i = 0; i < 4; i++) {
+                const div = document.createElement('div');
+                div.className = "thumbnail aspect-[9/16] bg-black";
+                div.innerHTML = `
+                    <img src="${uploadedImageUrl}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+                    <div class="overlay-text text-yellow-400 text-3xl top-8 left-4">EMAK</div>
+                    <div class="overlay-text text-white text-5xl top-1/3 left-4">GANTI BACKGROUND</div>
+                    <div class="overlay-text text-emerald-400 text-2xl bottom-12 left-4">MUDAH BANGET!</div>
+                    <div class="absolute bottom-4 right-4 text-6xl opacity-80">▶</div>
+                `;
+                results.appendChild(div);
+            }
+        }
     </script>
 </body>
 </html>
